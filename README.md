@@ -1,2 +1,1 @@
-# ComputerGraphicsTeamProject_
-# ㅇㅇㅇㅇ
+# 컴퓨터그래픽스 팀프로젝트 과제 02조
