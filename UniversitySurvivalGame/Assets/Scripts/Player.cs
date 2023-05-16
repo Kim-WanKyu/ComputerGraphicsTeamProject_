@@ -9,9 +9,18 @@ public class Player : MonoBehaviour
     float vAxis;
     public float speed;
     Vector3 moveVec;
+    bool wDown;
+    Animator anim;
 
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
+        
+    }
+
+    void Awake()
+    {
+
         
     }
 
@@ -20,8 +29,11 @@ public class Player : MonoBehaviour
     {
         hAxis = Input.GetAxisRaw("Horizontal");
         vAxis = Input.GetAxis("Vertical");
-
+        wDown = Input.GetButton("Walk");
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;
-        transform.position += moveVec * speed *Time.deltaTime;
+        transform.position += moveVec * speed * (wDown ? 0.3f : 1f) *Time.deltaTime;
+        anim.SetBool("isRun", moveVec != Vector3.zero);
+        anim.SetBool("isWalk", wDown);
+        transform.LookAt(transform.position +moveVec);
     }
 }
