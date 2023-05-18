@@ -410,6 +410,7 @@ GameObject:
   - component: {fileID: 1143413557}
   - component: {fileID: 1143413559}
   - component: {fileID: 1143413558}
+  - component: {fileID: 1143413560}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -429,8 +430,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1480318313}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 24.695, y: 0, z: 0}
 --- !u!81 &1143413558
 AudioListener:
@@ -483,6 +484,20 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1143413560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143413556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a49b99a346bb1439ec85aeb8f7e3b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1480318313}
+  offset: {x: 0, y: 7.5, z: -7}
 --- !u!1 &1480318306 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5461052779654786451, guid: 8f5e135a19626f544908fc8f156144b9, type: 3}
