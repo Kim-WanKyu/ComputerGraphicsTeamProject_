@@ -9,98 +9,31 @@ public class Player : MonoBehaviour
     float vAxis;
     public float speed;
     Vector3 moveVec;
-    Rigidbody rigid;
     bool wDown;
-    bool jDown;
-    bool isJump;
-    bool isDodge;
     Animator anim;
-    public char health;
 
     void Start()
     {
-        
+        anim = GetComponentInChildren<Animator>();
         
     }
 
     void Awake()
     {
-        anim = GetComponentInChildren<Animator>();
-        rigid = GetComponent<Rigidbody>();
-    }
 
-    private void Update()
-    {
-        GetInput();
-        Move();
-        Turn();
-        Jump();
-        Dodge();
+        
     }
 
     // Update is called once per frame
-    void GetInput()
+    void Update()
     {
         hAxis = Input.GetAxisRaw("Horizontal");
         vAxis = Input.GetAxis("Vertical");
         wDown = Input.GetButton("Walk");
-        jDown = Input.GetButtonDown("Jump");
-        isDodge = Input.GetButtonDown("Alt");
-        
-    }
-
-    void Move()
-    {
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;
-        transform.position += moveVec * speed * (wDown ? 0.3f : 1f) * Time.deltaTime;
+        transform.position += moveVec * speed * (wDown ? 0.3f : 1f) *Time.deltaTime;
         anim.SetBool("isRun", moveVec != Vector3.zero);
         anim.SetBool("isWalk", wDown);
+        transform.LookAt(transform.position +moveVec);
     }
-
-    void Turn()
-    {
-        transform.LookAt(transform.position + moveVec);
-    }
-
-    void Jump()
-    {
-        if (jDown && !isJump && !isDodge)
-        {
-            rigid.AddForce(Vector3.up * 15, ForceMode.Impulse);
-            anim.SetBool("isJump", true);
-            anim.SetTrigger("jumpDo");
-            isJump = true;
-        }
-    }
-
-    void Dodge()
-    {
-        if (jDown &&!isJump && !isDodge)
-        {
-            speed *= 2;
-            rigid.AddForce(Vector3.up * 15, ForceMode.Impulse);
-            anim.SetBool("isJump", true);
-            anim.SetTrigger("doDodge");
-            isDodge = true;
-            Invoke("DodgeOut()",0.4f);
-
-        }
-    } 
-
-    void DodgeOut()
-    {
-        speed *= 0.5f;
-        isDodge = false;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            anim.SetBool("isJump", false);
-            isJump = false;
-        }
-    }
-   
-
 }
