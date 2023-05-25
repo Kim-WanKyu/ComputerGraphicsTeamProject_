@@ -11,19 +11,12 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         bulletRigidbody = GetComponent<Rigidbody>();
 
-        // 캐릭터 방향으로 생성
-        Vector3 playerDirection = FindObjectOfType<Player>().transform.forward;
-        bulletRigidbody.velocity = playerDirection * speed;
+        bulletRigidbody.velocity = transform.forward * speed;
 
-        Destroy(gameObject, 4f); // 4초 후에 파괴
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        Destroy(gameObject, 10f); // 10초 후에 파괴 // 추후에 맵에 맞추어 수정 필요
     }
 
     // 충돌 처리
@@ -37,7 +30,7 @@ public class Bullet : MonoBehaviour
                 playerController.Hit();
             }
         }
-
+        Debug.Log("총알과 충돌한 물체 :" + other); 
         Destroy(gameObject); // 충돌 후 총알 파괴
     }
 }

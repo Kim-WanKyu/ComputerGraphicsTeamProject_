@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -184,7 +184,6 @@ GameObject:
   - component: {fileID: 658151913}
   - component: {fileID: 658151912}
   - component: {fileID: 658151911}
-  - component: {fileID: 658151910}
   - component: {fileID: 658151914}
   m_Layer: 0
   m_Name: BulletSpawner
@@ -193,19 +192,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &658151910
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658151909}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &658151911
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -264,7 +250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658151909}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.08, y: 2.0617113, z: 56.274445}
+  m_LocalPosition: {x: -0.08, y: 1.1, z: 50.7}
   m_LocalScale: {x: 11, y: 3, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -286,6 +272,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5995732662171683419, guid: 2073c50580b1f284f8d3b90d8202fb39, type: 3}
   spawnRateMin: 3
   spawnRateMax: 5
+  spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &935195604
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,22 +372,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &935195609
-Rigidbody:
+--- !u!65 &935195609
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935195604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1143413556
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,9 +515,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 5.034613
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 2.0173066, z: 0}
 --- !u!54 &1480318312
 Rigidbody:
   m_ObjectHideFlags: 0
