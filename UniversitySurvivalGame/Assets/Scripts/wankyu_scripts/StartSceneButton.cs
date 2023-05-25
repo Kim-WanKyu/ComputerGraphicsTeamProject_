@@ -9,16 +9,25 @@ using UnityEngine.UI;
 
 public class StartSceneButton : MonoBehaviour
 {
-    GameObject gameObject;
-    [Serialize]
-    private Button btnStart, btnExit;
-
+    [SerializeField]
+    private Button btnStart, btnInstruction, btnExit;
+    
 
     // Start is called before the first frame update
     public void Start()
     {
+        btnStart = transform.GetChild(0).GetComponent<Button>();
+        btnInstruction = transform.GetChild(1).GetComponent<Button>();
+        btnExit = transform.GetChild(2).GetComponent<Button>();
+
         btnStart.onClick.AddListener(ChangeMainScene);
+        btnInstruction.onClick.AddListener(ExitScene);  //
         btnExit.onClick.AddListener(ExitScene);
+    }
+
+    public void OpenInstuction()
+    {
+        //
     }
 
     public void ChangeMainScene()
