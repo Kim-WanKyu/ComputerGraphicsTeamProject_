@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     public int health;
     public bool isDie = false;
 
+    MeshRenderer[] meshs;
+
     void Start()
     {
         health = 100;
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();
+        meshs = GetComponentsInChildren<MeshRenderer>();
     }
     
 
@@ -78,12 +81,30 @@ public class Player : MonoBehaviour
     }
     public void Hit()
     {
-        this.health -= 10;
-        if(this.health <= 0)
+        if (!isDamage)
         {
-            Die();
+            this.health -= 10;
+            foreach(MeshRenderer mesh in meshs)
+            {
+                mesh.material.color = Color.yellow;
+            }
+            StartCoroutine(onDamage());
+            if (this.health <= 0)
+            {
+                Die();
+            }
         }
         
+    }
+    IEnumerator onDamage()
+    {
+        isDamage = true;
+        yield return new WaitForSeconds(1f);
+        isDamage = false;
+        foreach (MeshRenderer mesh in meshs)
+        {
+            mesh.material.color = Color.white;
+        }
     }
     public void Die()
     {

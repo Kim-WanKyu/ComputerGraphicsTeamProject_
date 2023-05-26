@@ -8,7 +8,7 @@ public class BulletSpawner : MonoBehaviour
     public float spawnRateMin = 0.5f;
     public float spawnRateMax = 3f;
 
-    //»ý¼º ¹üÀ§ Ãß°¡
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
     public Vector3 spawnPosition;
 
     private Transform target;
