@@ -34,7 +34,7 @@ public class StartSceneButton : MonoBehaviour
 
             btnInsExit.onClick.AddListener(CloseInstuction);
             if (instructionPanelObject.activeSelf == true)
-                instructionPanelObject.gameObject.SetActive(true);
+                instructionPanelObject.gameObject.SetActive(false);
         }
 
     }
