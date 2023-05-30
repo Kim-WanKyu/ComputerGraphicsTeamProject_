@@ -9,6 +9,11 @@ public class UIResolution : MonoBehaviour
         SetResolution(); // 초기에 게임 해상도 고정
     }
 
+    private void Update()
+    {
+        SetResolution(); // 초기에 게임 해상도 고정
+    }
+
     /* 해상도 설정하는 함수 */
     public void SetResolution()
     {
