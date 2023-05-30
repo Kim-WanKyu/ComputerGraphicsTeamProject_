@@ -22,6 +22,7 @@ public class Timer : MonoBehaviour
 
     public float GetRemainTime() { return remainTime; }
     public float GetTimer() { return timer; }
+    public float GetProgressTime() { return remainTime - endRecord; }
     public void SetEndRecord(float endtime) { endRecord = endtime; }
     public void IsCollideGoalLine() { isCollideGoalLine = true; }
 
