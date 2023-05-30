@@ -26,7 +26,7 @@ public class TpsCharacterController : MonoBehaviour
 
     private void Move()
     {
-        //Debug.DrawRaycameraArm.forward
+       Debug.DrawRaycameraArm.forward
     }
 
     private void LookAround()
