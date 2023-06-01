@@ -22,8 +22,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        speed = 15;
         health = 100;
-        
+        isDie = false;
     }
 
     void Awake()
