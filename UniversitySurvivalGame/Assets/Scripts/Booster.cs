@@ -21,22 +21,20 @@ public class Booster : MonoBehaviour
         if (other.tag == "Player")
         {
             Player playerController = other.GetComponent<Player>();
-            if (playerController != null)
+            if (playerController != null && playerController.speed < 20)
             {
                 playerController.speed += boostspeed;
                 StartCoroutine(onBoost(other));
-                playerController.speed -= boostspeed;
+       
             }
         }
-        Debug.Log("부스터 먹음 속도 향상 :" + other);
+        Debug.Log("부스터 먹음 속도 향상 :"+other);
     }
     IEnumerator onBoost(Collider other)
     {
         Player playerController = other.GetComponent<Player>();
-        playerController.speed += boostspeed;
         yield return new WaitForSeconds(2f);
         playerController.speed -= boostspeed;
-        
     }
 
 }
