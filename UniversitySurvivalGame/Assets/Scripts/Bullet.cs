@@ -11,14 +11,15 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speed = 8f;
 
         bulletRigidbody = GetComponent<Rigidbody>();
 
         bulletRigidbody.velocity = transform.forward * speed;
-
-        Destroy(gameObject, 10f); // 10초 후에 파괴 // 추후에 맵에 맞추어 수정 필요
+        Destroy(gameObject, 10f);
+        // 10초 후에 파괴 // 추후에 맵에 맞추어 수정 필요
     }
-
+    
     // 충돌 처리
     void OnTriggerEnter(Collider other)
     {
@@ -29,8 +30,8 @@ public class Bullet : MonoBehaviour
             {
                 playerController.Hit();
             }
+            Destroy(gameObject);
+            Debug.Log("총알과 충돌한 물체 :" + other);
         }
-        Debug.Log("총알과 충돌한 물체 :" + other); 
-        Destroy(gameObject); // 충돌 후 총알 파괴
     }
 }

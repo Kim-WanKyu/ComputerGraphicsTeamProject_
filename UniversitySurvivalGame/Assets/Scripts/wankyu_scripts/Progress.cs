@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Progress : MonoBehaviour
 {
     [SerializeField]
-    private GameObject goalLine, playerObject;
+    private GameObject startLine, goalLine, playerObject;
 
     [SerializeField]
     private GameObject progressBarObject;
@@ -20,6 +20,7 @@ public class Progress : MonoBehaviour
     {
         progressBar = progressBarObject.GetComponent<Slider>();
         progressBar.maxValue = goalLine.transform.position.z;
+        progressBar.minValue = startLine.transform.position.z;
 
         progressEnumerator = ProgressCoroutine();
         StartCoroutine(progressEnumerator);

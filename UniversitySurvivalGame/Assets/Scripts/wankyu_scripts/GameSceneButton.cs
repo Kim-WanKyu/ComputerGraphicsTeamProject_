@@ -1,4 +1,4 @@
-using JetBrains.Annotations;
+ï»¿using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection.Emit;
@@ -12,6 +12,9 @@ public class GameSceneButton : MonoBehaviour
 {
     [SerializeField]
     private Timer timerScript;
+
+    [SerializeField]
+    private Player playerScript;
 
     [SerializeField]
     private GameObject gameEndPanelObject, gameEndTextPanelObject, gameEndButtonPanel;
@@ -44,30 +47,30 @@ public class GameSceneButton : MonoBehaviour
             if (gameEndPanelObject.activeSelf == true)
                 gameEndPanelObject.gameObject.SetActive(false);
         }
-        
     }
 
-    //µğ¹ö±ë¿ë ÄÚµå
-    public void Update()
+    private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.O))
+        if (timerScript.GetIsFinish())
         {
-            Debug.Log("clear");
-            gameClear();
-        }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("gameFail");
-            gameFail();
+            if (playerScript.getLifeScore() == 'F'){
+                Debug.Log("gameFail");
+                gameFail();
+            }
+            else
+            {
+                Debug.Log("clear");
+                gameClear();
+            }
         }
     }
 
     public void gameClear()
     {
         endTitleTxt.SetText("Game Clear");
-        endScoreTxt.SetText("A");   //getScoreÇÊ¿ä
-        endDetailTxt.SetText("´ç½ÅÀº ÀÌ¹ø ÇĞ±â¸¦ ¹«»çÈ÷ ¸¶ÃÆ½À´Ï´Ù.");
-        endTimeTxt.SetText("ÇÃ·¹ÀÌÅ¸ÀÓ: " + timerScript.GetProgressTime().ToString("F1"));
+        endScoreTxt.SetText("" + playerScript.getLifeScore());   //getScoreï¿½Ê¿ï¿½
+        endDetailTxt.SetText("ì´ë²ˆ í•™ê¸°ë¥¼ ë¬´ì‚¬íˆ ë§ˆì³¤ìŠµë‹ˆë‹¤.");
+        endTimeTxt.SetText("í”Œë ˆì´íƒ€ì„: " + timerScript.GetTimer().ToString("F1"));
 
         endTitleTxt.color = Color.green;
         endScoreTxt.color = Color.black;
@@ -81,8 +84,8 @@ public class GameSceneButton : MonoBehaviour
     {
         endTitleTxt.SetText("Game Over");
         endScoreTxt.SetText("F");
-        endDetailTxt.SetText("´ç½ÅÀº ÇĞ°í¸¦ ´çÇß½À´Ï´Ù.");
-        endTimeTxt.SetText("ÇÃ·¹ÀÌÅ¸ÀÓ: " + timerScript.GetProgressTime().ToString("F1"));
+        endDetailTxt.SetText("ë‹¹ì‹ ì€ í•™ê³ ì…ë‹ˆë‹¤.");
+        endTimeTxt.SetText("í”Œë ˆì´íƒ€ì„: " + timerScript.GetTimer().ToString("F1"));
 
         endTitleTxt.color = Color.red;
         endScoreTxt.color = Color.red;
@@ -91,6 +94,7 @@ public class GameSceneButton : MonoBehaviour
 
         gameEndPanelObject.gameObject.SetActive(true);
     }
+
 
     public void gotoGameScene()
     {
