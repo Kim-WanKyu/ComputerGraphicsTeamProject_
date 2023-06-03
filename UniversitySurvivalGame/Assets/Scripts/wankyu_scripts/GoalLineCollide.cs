@@ -9,10 +9,9 @@ public class GoalLineCollide : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Character")
+        if (other.name == "Player")
         {
-            timerScript.SetEndRecord(timerScript.GetTimer());
-            timerScript.IsCollideGoalLine();
+            timerScript.SetCollideGoalLine(true);
         }
     }
 }

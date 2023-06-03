@@ -11,6 +11,7 @@ public class FallingObstacleSpawner : MonoBehaviour
 
     //���� ���� �߰�
     public Vector3 spawnPosition;
+    public Quaternion spawnRotation;
 
     private Transform target;
     private float spawnRate;
@@ -19,7 +20,7 @@ public class FallingObstacleSpawner : MonoBehaviour
     void Start()
     {
         this.timeAfterSpawn = 0f;
-        this.spawnRate = Random.Range(spawnRateMin,spawnRateMax);
+        this.spawnRate = Random.Range(spawnRateMin, spawnRateMax);
         this.target = FindObjectOfType<Player>().transform;
         spawnPosition = transform.position;
     }
@@ -29,16 +30,17 @@ public class FallingObstacleSpawner : MonoBehaviour
     {
         // 테스트용으로 키 입력을 통해 장애물을 생성할 수 있도록 합니다.
 
-            timeAfterSpawn += Time.deltaTime;
-            spawnPosition = new Vector3(Random.Range(transform.position.x-10f,transform.position.x+10),transform.position.y,transform.position.z);
-            if(this.timeAfterSpawn>=this.spawnRate)
-            {
+        timeAfterSpawn += Time.deltaTime;
+        spawnPosition = new Vector3(Random.Range(transform.position.x - 10f, transform.position.x + 10), transform.position.y, transform.position.z);
+        
+        if (this.timeAfterSpawn >= this.spawnRate)
+        {
             timeAfterSpawn = 0f;
             GameObject FallingObject = Instantiate(this.fallingObject, spawnPosition, this.transform.rotation);
             fallingObject.transform.position = spawnPosition;
             Destroy(FallingObject, 4);
-            this.spawnRate = Random.RandomRange(spawnRateMin,spawnRateMax); 
-            }
+            this.spawnRate = Random.Range(spawnRateMin, spawnRateMax);
+        }
     }
 }
 

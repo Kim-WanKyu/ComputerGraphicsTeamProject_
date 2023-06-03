@@ -37,11 +37,11 @@ public class BulletSpawner : MonoBehaviour
         {
             timeAfterSpawn = 0f;
 
-            GameObject bullet
+            GameObject bullets
                 = Instantiate(this.bulletPrefab, spawnPosition, this.transform.rotation);
 
-            bullet.transform.LookAt(target);
-            Destroy(bullet,4);
+            bullets.transform.LookAt(target);
+    
             this.spawnRate = Random.Range(spawnRateMin, spawnRateMax);
         }
     }

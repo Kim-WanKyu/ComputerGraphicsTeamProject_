@@ -31,9 +31,20 @@ public class NoteBookController : MonoBehaviour
             }
         }
         Debug.Log("노트북과 충돌한 물체 :" + other);
-        
     }
-    
+    void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Player" && isTouch)
+        {
+            Player playerController = other.GetComponent<Player>();
+            if (playerController != null)
+            {
+                playerController.Hit();
+            }
+        }
+        Debug.Log("노트북과 충돌중인 물체 :" + other);
+    }
+
 
     IEnumerator DamageStart()
     {
@@ -45,12 +56,13 @@ public class NoteBookController : MonoBehaviour
     {
         isTouch = true;
         anim.SetTrigger("isTouch");
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         StartCoroutine(onDamageEnd());
     }
+
     IEnumerator onDamageEnd()
     {
-        anim.SetTrigger("isTouchEnd");  
+        anim.SetTrigger("isTouchEnd");
         isTouch = false;
         yield return new WaitForSeconds(4f);
         StartCoroutine(DamageStart());

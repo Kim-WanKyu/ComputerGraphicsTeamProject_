@@ -4,26 +4,35 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private float hAxis;
+    private float vAxis;
+    private int health;
+    public float speed; //?
+
+    private bool wDown;
+    private bool jDown;
+    private bool isJump;
+    private bool isDamage;
+
+    private Vector3 moveVec;
+
+    private Animator anim;
+    private Rigidbody rigid;
+    private MeshRenderer[] meshs;
+
+    [SerializeField]
+    private GameObject startPositionObject;
+
+    private bool isEnterWall;
+
     // Start is called before the first frame update
-    float hAxis;
-    float vAxis;
-    public float speed;
-    Vector3 moveVec;
-    bool wDown;
-    bool jDown;
-    bool isJump;
-    bool isDamage;
-    Animator anim;
-    Rigidbody rigid;
-    public int health;
-    public bool isDie = false;
-
-    MeshRenderer[] meshs;
-
     void Start()
     {
+        speed = 15;
         health = 100;
-        
+        isEnterWall = false;
+
+        rigid.position = startPositionObject.transform.position;
     }
 
     void Awake()
@@ -32,7 +41,6 @@ public class Player : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         meshs = GetComponentsInChildren<MeshRenderer>();
     }
-    
 
     // Update is called once per frame
     void Update()
@@ -41,6 +49,35 @@ public class Player : MonoBehaviour
         Move();
         Turn();
         Jump();
+    }
+
+    private void FixedUpdate()
+    {
+        FreezeRotation();
+        StopToWall();
+    }
+    public char getLifeScore()
+    {
+        char lifeScore; //현재 학점
+        switch (health / 10)
+        {
+            case 10:
+                lifeScore = 'A';
+                break;
+            case 9:
+                lifeScore = 'B';
+                break;
+            case 8:
+                lifeScore = 'C';
+                break;
+            case 7:
+                lifeScore = 'D';
+                break;
+            default:
+                lifeScore = 'F';
+                break;
+        }
+        return lifeScore;
     }
 
     void GetInput()
@@ -54,7 +91,10 @@ public class Player : MonoBehaviour
     void Move()
     {
         moveVec = new Vector3(hAxis, 0, vAxis).normalized;
-        transform.position += moveVec * speed * (wDown ? 0.3f : 1f) * Time.deltaTime;
+
+        if(!isEnterWall)
+            transform.position += moveVec * speed * (wDown ? 0.3f : 1f) * Time.deltaTime;
+
         anim.SetBool("isRun", moveVec != Vector3.zero);
         anim.SetBool("isWalk", wDown);
     }
@@ -68,17 +108,30 @@ public class Player : MonoBehaviour
     {
         if (jDown && !isJump)
         {
-            rigid.AddForce(Vector3.up * 15, ForceMode.Impulse);
+            rigid.AddForce(Vector3.up * 20, ForceMode.Impulse);
             isJump = true;
         }
     }
+
+    void FreezeRotation()
+    {
+        rigid.angularVelocity = Vector3.zero;
+    }
+
+    void StopToWall()
+    {
+        Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
+        isEnterWall = Physics.Raycast(transform.position, transform.forward, 2, LayerMask.GetMask("Wall"));
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Ground")
         {
              isJump = false;
-        }    
+        }
     }
+
     public void Hit()
     {
         if (!isDamage)
@@ -89,10 +142,6 @@ public class Player : MonoBehaviour
                 mesh.material.color = Color.yellow;
             }
             StartCoroutine(onDamage());
-            if (this.health <= 0)
-            {
-                Die();
-            }
         }
         
     }
@@ -104,14 +153,6 @@ public class Player : MonoBehaviour
         foreach (MeshRenderer mesh in meshs)
         {
             mesh.material.color = Color.white;
-        }
-    }
-    public void Die()
-    {
-        if (this.isDie == false)
-        {
-            this.isDie = true;
-            this.gameObject.SetActive(false);
         }
     }
 }
