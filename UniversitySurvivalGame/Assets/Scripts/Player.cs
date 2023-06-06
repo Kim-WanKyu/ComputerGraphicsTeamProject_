@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
     {
         if (jDown && !isJump)
         {
-            rigid.AddForce(Vector3.up * 20, ForceMode.Impulse);
+            rigid.AddForce(Vector3.up * 14, ForceMode.Impulse);
             isJump = true;
         }
     }

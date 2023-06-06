@@ -39,8 +39,6 @@ public class BulletSpawner : MonoBehaviour
 
             GameObject bullets
                 = Instantiate(this.bulletPrefab, spawnPosition, this.transform.rotation);
-
-            bullets.transform.LookAt(target);
     
             this.spawnRate = Random.Range(spawnRateMin, spawnRateMax);
         }
