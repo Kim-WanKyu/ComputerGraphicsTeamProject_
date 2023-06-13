@@ -1,22 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 
-public class BulletSpawner : MonoBehaviour
+public class BulletSpawnerForward : MonoBehaviour
 {
     public GameObject bulletPrefab;  // 총알 프리팹
     public int bulletCount;  // 생성할 총알 개수
 
-    private float spawnerZLength;  // 스포너의 z축 길이 //장애물 생성되는 범위 길이
+    private float spawnerXLength;  // 스포너의 x축 길이 //장애물 생성되는 범위 길이
 
     private float spawnLate;
 
     private void Start()
     {
         // 스포너 생성   //스포너의 장애물 생성 범위 초기화
-        spawnerZLength = transform.localScale.z;
+
+        spawnerXLength = transform.localScale.x;
 
         spawnLate = 4.5f;
     }
@@ -33,14 +33,16 @@ public class BulletSpawner : MonoBehaviour
 
     private void SpawnBullets()
     {
-        bulletCount = (int) (spawnerZLength / 5);
+        bulletCount = (int)(spawnerXLength / 4);
         for (int i = 0; i < bulletCount; i++)
         {
             // 총알 생성
-            float zPosition = transform.position.z - (spawnerZLength / 2) + (bulletCount * i);  //시작 위치 + 간격
-            Vector3 bulletPosition = new Vector3(transform.position.x, transform.position.y, zPosition);
-            Quaternion bulletRotation = transform.rotation;
+            float xPosition = transform.position.x - (spawnerXLength / 2) + (bulletCount * i);  //시작 위치 + 간격
+            Vector3 bulletPosition = new Vector3(xPosition, transform.position.y, transform.position.z);
+            Quaternion bulletRotation = Quaternion.Euler(0, 180f, 0f);
             GameObject bullet = Instantiate(bulletPrefab, bulletPosition, bulletRotation);
+
+            bullet.transform.right = -transform.forward;
         }
     }
 }

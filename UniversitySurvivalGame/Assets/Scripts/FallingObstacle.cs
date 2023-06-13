@@ -17,4 +17,19 @@ public class FallingObstacle : MonoBehaviour
     {
         
     }
+
+    // 충돌 처리
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            Player playerController = other.GetComponent<Player>();
+            if (playerController != null)
+            {
+                playerController.Hit();
+            }
+            Destroy(gameObject);
+            Debug.Log("총알과 충돌한 물체 :" + other);
+        }
+    }
 }
