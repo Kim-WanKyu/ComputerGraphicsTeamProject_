@@ -14,6 +14,5 @@ public class HuddleObstacle : MonoBehaviour
                 playerController.Hit();
             }
         }
-        Debug.Log("허들과 충돌한 물체 :" + other);
      }
 }

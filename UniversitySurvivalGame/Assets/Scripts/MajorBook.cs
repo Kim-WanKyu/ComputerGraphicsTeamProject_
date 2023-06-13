@@ -5,7 +5,8 @@ using UnityEngine;
 public class MajorBook : MonoBehaviour
 {
     public float speed = 2f; // 움직이는 속도
-    public float distance = 5f; // 왕복 거리
+    public float distance = 5f;// 왕복 거리
+    public float distanceTime;
 
     private float startPosX; // 시작 위치 X 좌표
 
@@ -17,7 +18,7 @@ public class MajorBook : MonoBehaviour
     private void Update()
     {
         // 좌우로 왕복 운동
-        float newPos = startPosX + Mathf.Sin(Time.time * speed) * distance;
+        float newPos = startPosX + Mathf.Sin(Time.time * speed + distanceTime) * distance;
         transform.position = new Vector3(newPos, transform.position.y, transform.position.z);
     }
     void OnTriggerEnter(Collider other)

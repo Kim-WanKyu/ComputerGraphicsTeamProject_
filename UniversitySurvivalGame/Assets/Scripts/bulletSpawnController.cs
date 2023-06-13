@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletSpawnController : MonoBehaviour
+public class BulletSpawnController : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] bulletSpawner;

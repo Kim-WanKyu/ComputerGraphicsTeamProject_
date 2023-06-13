@@ -42,9 +42,7 @@ public class NoteBookController : MonoBehaviour
                 playerController.Hit();
             }
         }
-        Debug.Log("노트북과 충돌중인 물체 :" + other);
     }
-
 
     IEnumerator DamageStart()
     {
