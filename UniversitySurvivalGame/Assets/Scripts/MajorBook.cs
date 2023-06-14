@@ -13,6 +13,7 @@ public class MajorBook : MonoBehaviour
     private void Start()
     {
         startPosX = transform.position.x; // 시작 위치 설정
+        distanceTime = transform.position.z * (Mathf.PI + 0.1f) / 5;
     }
 
     private void Update()
@@ -31,6 +32,5 @@ public class MajorBook : MonoBehaviour
                 playerController.Hit();
             }
         }
-        Debug.Log("전공책과 충돌한 물체 :" + other);
     }
 }

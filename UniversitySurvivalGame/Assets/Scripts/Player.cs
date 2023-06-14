@@ -59,24 +59,13 @@ public class Player : MonoBehaviour
     public char getLifeScore()
     {
         char lifeScore; //현재 학점
-        switch (health / 10)
-        {
-            case 10:
-                lifeScore = 'A';
-                break;
-            case 9:
-                lifeScore = 'B';
-                break;
-            case 8:
-                lifeScore = 'C';
-                break;
-            case 7:
-                lifeScore = 'D';
-                break;
-            default:
-                lifeScore = 'F';
-                break;
-        }
+        if (health > 100) lifeScore = 'X';
+        else if (health >= 90) lifeScore = 'A';
+        else if (health >= 80) lifeScore = 'B';
+        else if (health >= 70) lifeScore = 'C';
+        else if (health >= 60) lifeScore = 'D';
+        else lifeScore = 'F';
+
         return lifeScore;
     }
 
@@ -136,7 +125,7 @@ public class Player : MonoBehaviour
     {
         if (!isDamage)
         {
-            this.health -= 10;
+            this.health -= 5;
             foreach(MeshRenderer mesh in meshs)
             {
                 mesh.material.color = Color.yellow;

@@ -84,7 +84,7 @@ public class GameSceneButton : MonoBehaviour
     {
         endTitleTxt.SetText("Game Over");
         endScoreTxt.SetText("F");
-        endDetailTxt.SetText("당신은 학고입니다.");
+        endDetailTxt.SetText("당신은 재수강이 필요합니다.");
         endTimeTxt.SetText("플레이타임: " + timerScript.GetTimer().ToString("F1"));
 
         endTitleTxt.color = Color.red;
