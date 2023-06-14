@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject startPositionObject;
+   
 
     private bool isEnterWall;
 
@@ -45,10 +46,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetInput();
-        Move();
-        Turn();
-        Jump();
+      
+            GetInput();
+            Move();
+            Turn();
+            Jump();
+       
+      
     }
 
     private void FixedUpdate()

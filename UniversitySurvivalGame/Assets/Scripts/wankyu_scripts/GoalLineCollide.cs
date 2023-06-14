@@ -12,6 +12,11 @@ public class GoalLineCollide : MonoBehaviour
         if (other.name == "Player")
         {
             timerScript.SetCollideGoalLine(true);
+            Player playerController = other.GetComponent<Player>();
+            if (playerController != null)
+            {
+                playerController.speed = 0;
+            }
         }
     }
 }
