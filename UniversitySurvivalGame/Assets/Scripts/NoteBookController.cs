@@ -14,7 +14,12 @@ public class NoteBookController : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         StartCoroutine(onDamage());
     }
-    
+
+    private void OnDisable()
+    {
+        StopCoroutine(onDamage());
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -30,7 +35,6 @@ public class NoteBookController : MonoBehaviour
                 playerController.Hit();
             }
         }
-        Debug.Log("노트북과 충돌한 물체 :" + other);
     }
     void OnTriggerStay(Collider other)
     {

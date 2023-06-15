@@ -38,10 +38,12 @@ public class BulletSpawnerForward : MonoBehaviour
         {
             // 총알 생성
             float xPosition = transform.position.x - (spawnerXLength / 2) + (bulletCount * i);  //시작 위치 + 간격
-            Vector3 bulletPosition = new Vector3(xPosition, transform.position.y, transform.position.z);
-            Quaternion bulletRotation = Quaternion.Euler(0, 180f, 0f);
-            GameObject bullet = Instantiate(bulletPrefab, bulletPosition, bulletRotation);
 
+            Vector3 bulletPosition = new Vector3(xPosition, transform.position.y, transform.position.z);
+
+            Quaternion bulletRotation = transform.rotation.normalized;
+
+            GameObject bullet = Instantiate(bulletPrefab, bulletPosition, bulletRotation);
             bullet.transform.right = -transform.forward;
         }
     }

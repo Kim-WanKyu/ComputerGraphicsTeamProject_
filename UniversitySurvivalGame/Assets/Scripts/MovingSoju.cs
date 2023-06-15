@@ -5,13 +5,14 @@ using UnityEngine;
 public class MovingSoju : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float speed = 2f; // 움직이는 속도
+    public float speed; // 움직이는 속도
     public float distance; // 왕복 거리
 
     private float startPosX; // 시작 위치 X 좌표
 
     private void Start()
     {
+        speed = 1f;
         startPosX = transform.position.z; // 시작 위치 설정
     }
 

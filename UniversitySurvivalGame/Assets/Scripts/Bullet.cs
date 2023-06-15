@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed;
-    public int damage;
+    private float speed;
     private Rigidbody bulletRigidbody;
+
     public int rotateSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
+
         speed = Random.Range(4f, 8f); //속도 4~8
 
         bulletRigidbody = GetComponent<Rigidbody>();
