@@ -37,7 +37,7 @@ public class BulletSpawner : MonoBehaviour
         for (int i = 0; i < bulletCount; i++)
         {
             // 총알 생성
-            float zPosition = transform.position.z - (spawnerZLength / 2) + (bulletCount * i);  //시작 위치 + 간격
+            float zPosition = transform.position.z - (spawnerZLength / 2) + (spawnerZLength/bulletCount * i);  //시작 위치 + 간격
             Vector3 bulletPosition = new Vector3(transform.position.x, transform.position.y, zPosition);
             Quaternion bulletRotation = transform.rotation;
             GameObject bullet = Instantiate(bulletPrefab, bulletPosition, bulletRotation);
