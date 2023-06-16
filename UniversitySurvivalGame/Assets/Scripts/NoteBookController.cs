@@ -65,6 +65,7 @@ public class NoteBookController : MonoBehaviour
     IEnumerator onDamageEnd()
     {
         anim.SetTrigger("isTouchEnd");
+        yield return new WaitForSeconds(1f);
         isTouch = false;
         yield return new WaitForSeconds(4f);
         StartCoroutine(DamageStart());
